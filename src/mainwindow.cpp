@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , turntableClient_(new TurntableClient(this))
-    , widgetTurntable_(new WidgetTurntable(this))
+    //, widgetTurntable_(new WidgetTurntable(this))
 {
     ui->setupUi(this);
     //ui->verticalLayout->addWidget(widgetTurntable_);
@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete widgetTurntable_;
+    //delete widgetTurntable_;
     delete ui;
 }
 
