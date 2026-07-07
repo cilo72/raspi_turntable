@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>548</height>
+    <height>480</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -18,19 +24,25 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="leftMargin">
-       <number>7</number>
+       <number>0</number>
       </property>
       <property name="topMargin">
-       <number>7</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>7</number>
+       <number>0</number>
       </property>
       <property name="bottomMargin">
-       <number>7</number>
+       <number>0</number>
       </property>
       <item>
        <widget class="QPushButton" name="pushButton_2">
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>50</height>
+         </size>
+        </property>
         <property name="text">
          <string>PushButton</string>
         </property>
@@ -38,6 +50,12 @@
       </item>
       <item>
        <widget class="QPushButton" name="pushButtonLowLevel">
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>50</height>
+         </size>
+        </property>
         <property name="text">
          <string>PushButton</string>
         </property>
@@ -59,19 +77,34 @@
         </sizepolicy>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
         <item>
          <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0,0">
           <property name="leftMargin">
-           <number>7</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
-           <number>7</number>
+           <number>0</number>
           </property>
           <property name="rightMargin">
-           <number>7</number>
+           <number>0</number>
           </property>
           <property name="bottomMargin">
-           <number>7</number>
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>3</number>
           </property>
           <item row="0" column="3">
            <widget class="QFrame" name="frame_4">
@@ -331,8 +364,8 @@
               <widget class="QPushButton" name="pushButtonLowLevelBridgeLock">
                <property name="minimumSize">
                 <size>
-                 <width>120</width>
-                 <height>60</height>
+                 <width>80</width>
+                 <height>50</height>
                 </size>
                </property>
                <property name="font">
@@ -349,8 +382,8 @@
               <widget class="QPushButton" name="pushButtonLowLevelBridgeUnlock">
                <property name="minimumSize">
                 <size>
-                 <width>120</width>
-                 <height>60</height>
+                 <width>80</width>
+                 <height>50</height>
                 </size>
                </property>
                <property name="font">
@@ -408,8 +441,8 @@
               <widget class="QPushButton" name="pushButtonLowLevelPowerOff">
                <property name="minimumSize">
                 <size>
-                 <width>120</width>
-                 <height>60</height>
+                 <width>80</width>
+                 <height>50</height>
                 </size>
                </property>
                <property name="font">
@@ -426,8 +459,8 @@
               <widget class="QPushButton" name="pushButtonLowLevelPowerOnDot">
                <property name="minimumSize">
                 <size>
-                 <width>120</width>
-                 <height>60</height>
+                 <width>80</width>
+                 <height>50</height>
                 </size>
                </property>
                <property name="font">
@@ -444,8 +477,8 @@
               <widget class="QPushButton" name="pushButtonLowLevelPowerOnNoDot">
                <property name="minimumSize">
                 <size>
-                 <width>120</width>
-                 <height>60</height>
+                 <width>80</width>
+                 <height>50</height>
                 </size>
                </property>
                <property name="font">
@@ -493,8 +526,8 @@
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
-                 <width>20</width>
-                 <height>40</height>
+                 <width>0</width>
+                 <height>0</height>
                 </size>
                </property>
               </spacer>
@@ -503,8 +536,8 @@
               <widget class="QPushButton" name="pushButtonLowLevelInit">
                <property name="minimumSize">
                 <size>
-                 <width>120</width>
-                 <height>60</height>
+                 <width>80</width>
+                 <height>50</height>
                 </size>
                </property>
                <property name="font">
@@ -521,8 +554,8 @@
               <widget class="QPushButton" name="LowLevelTurnPlusOne">
                <property name="minimumSize">
                 <size>
-                 <width>120</width>
-                 <height>60</height>
+                 <width>80</width>
+                 <height>50</height>
                 </size>
                </property>
                <property name="font">
@@ -539,8 +572,8 @@
               <widget class="QPushButton" name="pushButtonLowLevelTurnMinusOne">
                <property name="minimumSize">
                 <size>
-                 <width>120</width>
-                 <height>60</height>
+                 <width>80</width>
+                 <height>50</height>
                 </size>
                </property>
                <property name="font">
@@ -557,8 +590,8 @@
               <widget class="QPushButton" name="pushButtonLowLevelTurn180">
                <property name="minimumSize">
                 <size>
-                 <width>120</width>
-                 <height>60</height>
+                 <width>80</width>
+                 <height>50</height>
                 </size>
                </property>
                <property name="font">
@@ -630,8 +663,8 @@
                 <widget class="QPushButton" name="pushButtonLowLevelReset">
                  <property name="minimumSize">
                   <size>
-                   <width>120</width>
-                   <height>60</height>
+                   <width>80</width>
+                   <height>50</height>
                   </size>
                  </property>
                  <property name="font">
@@ -648,8 +681,8 @@
                 <widget class="QPushButton" name="pushButtonLowLevelSave">
                  <property name="minimumSize">
                   <size>
-                   <width>120</width>
-                   <height>60</height>
+                   <width>80</width>
+                   <height>50</height>
                   </size>
                  </property>
                  <property name="font">
@@ -682,8 +715,8 @@
                 <widget class="QPushButton" name="pushButtonCW1_0">
                  <property name="minimumSize">
                   <size>
-                   <width>120</width>
-                   <height>60</height>
+                   <width>80</width>
+                   <height>50</height>
                   </size>
                  </property>
                  <property name="font">
@@ -700,8 +733,8 @@
                 <widget class="QPushButton" name="pushButtonCW0_1">
                  <property name="minimumSize">
                   <size>
-                   <width>120</width>
-                   <height>60</height>
+                   <width>80</width>
+                   <height>50</height>
                   </size>
                  </property>
                  <property name="font">
@@ -722,8 +755,8 @@
                 <widget class="QPushButton" name="pushButtonCCW1_0">
                  <property name="minimumSize">
                   <size>
-                   <width>120</width>
-                   <height>60</height>
+                   <width>80</width>
+                   <height>50</height>
                   </size>
                  </property>
                  <property name="font">
@@ -740,8 +773,8 @@
                 <widget class="QPushButton" name="pushButtonCCW0_1">
                  <property name="minimumSize">
                   <size>
-                   <width>120</width>
-                   <height>60</height>
+                   <width>80</width>
+                   <height>50</height>
                   </size>
                  </property>
                  <property name="font">
