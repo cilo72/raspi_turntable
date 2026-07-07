@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     , widgetTurntable_(new WidgetTurntable(this))
 {
     ui->setupUi(this);
-    ui->verticalLayout->addWidget(widgetTurntable_);
+    //ui->verticalLayout->addWidget(widgetTurntable_);
 
     connect(turntableClient_, &TurntableClient::stateReceived,
             this, [this](const TurntableClient::State &state) {
@@ -21,17 +21,9 @@ MainWindow::MainWindow(QWidget *parent)
 
         turntableClient_->readHomingOffset();
 
-                ui->label->setText(QString("Init %1 | position: %2 | logical: %3 | error: %4")
-                                       .arg(state.hasOk && state.ok ? "OK" : "failed")
-                                       .arg(state.position)
-                                       .arg(state.logicalPosition)
-                                       .arg(state.lastError));
             });
     connect(turntableClient_, &TurntableClient::requestFailed,
             this, [this](const QUrl &, int httpStatus, const QString &error) {
-                ui->label->setText(QString("Init failed | HTTP: %1 | %2")
-                                       .arg(httpStatus)
-                                       .arg(error));
             });
     connect(turntableClient_, &TurntableClient::homingOffsetReceived,
             this, [this](int homingOffset) {
@@ -48,15 +40,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-    ui->label->setText("Init running...");
-    turntableClient_->init();
-}
-
 void MainWindow::on_pushButtonLowLevelBridgeLock_clicked()
 {
-    ui->label->setText("Lock running...");
     turntableClient_->lock();
 }
 
@@ -67,49 +52,41 @@ void MainWindow::on_pushButtonLowLevel_clicked()
 
 void MainWindow::on_pushButtonLowLevelBridgeUnlock_clicked()
 {
-    ui->label->setText("Unlock running...");
     turntableClient_->unlock();
 }
 
 void MainWindow::on_pushButtonLowLevelPowerOff_clicked()
 {
-    ui->label->setText("Power Off running...");
     turntableClient_->powerOff();
 }
 
 void MainWindow::on_pushButtonLowLevelPowerOnDot_clicked()
 {
-    ui->label->setText("Power On Dot running...");
     turntableClient_->powerOn(TurntableClient::Side::Dot);
 }
 
 void MainWindow::on_pushButtonLowLevelPowerOnNoDot_clicked()
 {
-    ui->label->setText("Power On No Dot running...");
     turntableClient_->powerOn(TurntableClient::Side::NoDot);
 }
 
 void MainWindow::on_pushButtonLowLevelInit_clicked()
 {
-    ui->label->setText("Init running...");
     turntableClient_->logicalInit();
 }
 
 void MainWindow::on_LowLevelTurnPlusOne_clicked()
 {
-    ui->label->setText("Turn running...");
     turntableClient_->turnClockwise();
 }
 
 void MainWindow::on_pushButtonLowLevelTurnMinusOne_clicked()
 {
-    ui->label->setText("Turn running...");
     turntableClient_->turnCounterClockwise();
 }
 
 void MainWindow::on_pushButtonLowLevelTurn180_clicked()
 {
-    ui->label->setText("Turn running...");
     turntableClient_->turn180();
 }
 

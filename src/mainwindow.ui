@@ -269,6 +269,11 @@
                <layout class="QVBoxLayout" name="verticalLayout_9">
                 <item>
                  <widget class="QLabel" name="label_4">
+                  <property name="font">
+                   <font>
+                    <pointsize>16</pointsize>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Bridge</string>
                   </property>
@@ -292,6 +297,12 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButtonLowLevelBridgeLock">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>40</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>Lock</string>
                   </property>
@@ -299,6 +310,12 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButtonLowLevelBridgeUnlock">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>40</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>Unlock</string>
                   </property>
@@ -507,20 +524,6 @@
         </item>
        </layout>
       </widget>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
      </widget>
     </item>
    </layout>

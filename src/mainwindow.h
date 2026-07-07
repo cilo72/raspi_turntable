@@ -20,8 +20,6 @@ public:
     ~MainWindow() override;
 
 private slots:
-    void on_pushButton_clicked();
-
     void on_pushButtonLowLevelBridgeLock_clicked();
 
     void on_pushButtonLowLevel_clicked();
