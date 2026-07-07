@@ -55,6 +55,11 @@
           <height>50</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Main</string>
         </property>
@@ -67,6 +72,11 @@
           <width>80</width>
           <height>50</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Low Level</string>
