@@ -45,11 +45,6 @@ void MainWindow::on_pushButtonLowLevelBridgeLock_clicked()
     turntableClient_->lock();
 }
 
-void MainWindow::on_pushButtonLowLevel_clicked()
-{
-    ui->stackedWidget->setCurrentWidget(ui->pageLowLevel);
-}
-
 void MainWindow::on_pushButtonLowLevelBridgeUnlock_clicked()
 {
     turntableClient_->unlock();
@@ -113,4 +108,14 @@ void MainWindow::on_pushButtonCCW1_0_clicked()
 void MainWindow::on_pushButtonCCW0_1_clicked()
 {
     turntableClient_->turnTenth(-1);
+}
+
+void MainWindow::on_pushButtonPageMain_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->pageMain);
+}
+
+void MainWindow::on_pushButtonPageLowLevel_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->pageLowLevel);
 }

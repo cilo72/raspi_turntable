@@ -22,8 +22,6 @@ public:
 private slots:
     void on_pushButtonLowLevelBridgeLock_clicked();
 
-    void on_pushButtonLowLevel_clicked();
-
     void on_pushButtonLowLevelBridgeUnlock_clicked();
 
     void on_pushButtonLowLevelPowerOff_clicked();
@@ -49,6 +47,10 @@ private slots:
     void on_pushButtonCCW1_0_clicked();
 
     void on_pushButtonCCW0_1_clicked();
+
+    void on_pushButtonPageMain_clicked();
+
+    void on_pushButtonPageLowLevel_clicked();
 
 private:
     Ui::MainWindow *ui;
