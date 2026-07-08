@@ -13,6 +13,13 @@ class WidgetTurntable : public QWidget
 public:
     explicit WidgetTurntable(QWidget *parent = nullptr);
 
+    int bridgePosition() const;
+    int targetPosition() const;
+
+public slots:
+    void setBridgePosition(int position);
+    void setTargetPosition(int position);
+
 signals:
     void trackClicked(int trackNumber);
 
@@ -29,6 +36,10 @@ private:
     QPointF mapToWorld(const QPointF &widgetPos) const;
     int trackAtPoint(const QPointF &worldPos) const;
     void drawBridge(QPainter &painter) const;
-    void drawTrack(QPainter &painter, TrackPolarity polarity, bool used) const;
+    void drawTargetIndicator(QPainter &painter) const;
+    void drawTrack(QPainter &painter, TrackPolarity polarity) const;
     void drawTurntable(QPainter &painter) const;
+
+    int m_bridgePosition = 0;
+    int m_targetPosition = -1;
 };

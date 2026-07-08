@@ -30,6 +30,14 @@ MainWindow::MainWindow(QWidget *parent)
             ui->labelLowLevelHomeOffset->setText(QString("%1").arg(homingOffset));
             });
 
+
+    connect(widgetTurntable_,  &WidgetTurntable::trackClicked, this, [this] (int track)
+            {
+            ui->horizontalSliderTargetPosition->setValue(track);
+            updateWidgetTurntable();
+            });
+
+    updateWidgetTurntable();
     turntableClient_->readHomingOffset();
     turntableClient_->refreshState();
 }
@@ -128,4 +136,27 @@ void MainWindow::on_horizontalSlider_actionTriggered(int action)
 void MainWindow::on_horizontalSlider_sliderMoved(int position)
 {
     //ui->label->setText(QString("%1").arg(position));
+}
+
+void MainWindow::on_horizontalSliderTargetPosition_sliderMoved(int position)
+{
+    Q_UNUSED(position)
+    updateWidgetTurntable();
+}
+
+void MainWindow::on_pushButtonMinus_clicked()
+{
+    ui->horizontalSliderTargetPosition->triggerAction(QAbstractSlider::SliderAction::SliderSingleStepSub);
+    updateWidgetTurntable();
+}
+
+void MainWindow::on_pushButtonPlus_clicked()
+{
+    ui->horizontalSliderTargetPosition->triggerAction(QAbstractSlider::SliderAction::SliderSingleStepAdd);
+    updateWidgetTurntable();
+}
+
+void MainWindow::updateWidgetTurntable()
+{
+    widgetTurntable_->setTargetPosition(ui->horizontalSliderTargetPosition->value());
 }
