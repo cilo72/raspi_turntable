@@ -4,6 +4,5 @@
         <file>images/minus.svg</file>
         <file>images/plus.svg</file>
         <file>images/rotate-right.svg</file>
-        <file>images/turntable.svg</file>
     </qresource>
 </RCC>

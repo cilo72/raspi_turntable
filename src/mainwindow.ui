@@ -93,6 +93,9 @@
       <widget class="QWidget" name="pageMain">
        <layout class="QVBoxLayout" name="verticalLayout_12">
         <item>
+         <layout class="QHBoxLayout" name="horizontalLayoutDisplay"/>
+        </item>
+        <item>
          <widget class="QLabel" name="label">
           <property name="text">
            <string>TextLabel</string>

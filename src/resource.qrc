@@ -1,5 +1,4 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/images/turntable.svg</file>
     </qresource>
 </RCC>
