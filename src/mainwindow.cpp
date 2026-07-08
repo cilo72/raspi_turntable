@@ -127,5 +127,5 @@ void MainWindow::on_horizontalSlider_actionTriggered(int action)
 
 void MainWindow::on_horizontalSlider_sliderMoved(int position)
 {
-    ui->label->setText(QString("%1").arg(position));
+    //ui->label->setText(QString("%1").arg(position));
 }
