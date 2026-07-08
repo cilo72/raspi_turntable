@@ -103,6 +103,12 @@
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="1" column="3">
            <widget class="QPushButton" name="pushButton_7">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>50</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
               <width>80</width>
@@ -116,6 +122,12 @@
           </item>
           <item row="1" column="0">
            <widget class="QPushButton" name="pushButton_8">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>50</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
               <width>80</width>
@@ -161,6 +173,12 @@
           </item>
           <item row="1" column="1">
            <widget class="QPushButton" name="pushButton_5">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>50</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
               <width>80</width>
@@ -169,6 +187,25 @@
             </property>
             <property name="text">
              <string>Turn</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QPushButton" name="pushButton_9">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Off</string>
             </property>
            </widget>
           </item>
@@ -198,8 +235,14 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="4">
-           <widget class="QPushButton" name="pushButton_9">
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>50</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
               <width>80</width>
@@ -207,26 +250,22 @@
              </size>
             </property>
             <property name="text">
-             <string>Off</string>
+             <string>PushButton</string>
             </property>
            </widget>
           </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QPushButton" name="pushButton_2">
+          <item row="2" column="4">
+           <widget class="QPushButton" name="pushButton_10">
             <property name="minimumSize">
              <size>
-              <width>90</width>
-              <height>90</height>
+              <width>80</width>
+              <height>50</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>90</width>
-              <height>90</height>
+              <width>80</width>
+              <height>50</height>
              </size>
             </property>
             <property name="text">
@@ -234,13 +273,19 @@
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QSlider" name="horizontalSlider">
+          <item row="2" column="1" colspan="3">
+           <widget class="QSlider" name="horizontalSlider_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>110</height>
+             </size>
             </property>
             <property name="styleSheet">
              <string notr="true">/*
@@ -268,25 +313,6 @@ QSlider::handle:horizontal {
             </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton">
-            <property name="minimumSize">
-             <size>
-              <width>90</width>
-              <height>90</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>90</width>
-              <height>90</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>PushButton</string>
             </property>
            </widget>
           </item>
