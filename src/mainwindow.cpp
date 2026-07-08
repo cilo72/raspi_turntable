@@ -141,7 +141,7 @@ void MainWindow::on_horizontalSlider_sliderMoved(int position)
 void MainWindow::on_horizontalSliderTargetPosition_sliderMoved(int position)
 {
     Q_UNUSED(position)
-    updateWidgetTurntable();
+
 }
 
 void MainWindow::on_pushButtonMinus_clicked()
@@ -159,4 +159,9 @@ void MainWindow::on_pushButtonPlus_clicked()
 void MainWindow::updateWidgetTurntable()
 {
     widgetTurntable_->setTargetPosition(ui->horizontalSliderTargetPosition->value());
+}
+
+void MainWindow::on_horizontalSliderTargetPosition_valueChanged(int value)
+{
+    updateWidgetTurntable();
 }
