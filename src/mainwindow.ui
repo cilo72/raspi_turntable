@@ -91,17 +91,33 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="pageMain">
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QSlider" name="horizontalSlider">
         <property name="geometry">
          <rect>
-          <x>330</x>
-          <y>170</y>
-          <width>94</width>
-          <height>25</height>
+          <x>150</x>
+          <y>290</y>
+          <width>160</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>17</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>190</y>
+          <width>66</width>
+          <height>17</height>
          </rect>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>TextLabel</string>
         </property>
        </widget>
       </widget>
