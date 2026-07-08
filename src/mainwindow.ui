@@ -142,7 +142,7 @@
             </property>
             <property name="font">
              <font>
-              <pointsize>16</pointsize>
+              <pointsize>12</pointsize>
               <bold>true</bold>
              </font>
             </property>
@@ -150,7 +150,7 @@
              <string notr="true">image: url(:/images/images/refresh.svg);</string>
             </property>
             <property name="text">
-             <string/>
+             <string>180</string>
             </property>
            </widget>
           </item>
@@ -288,8 +288,11 @@
               <height>50</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">image: url(:/images/images/refresh.svg);</string>
+            </property>
             <property name="text">
-             <string>PushButton</string>
+             <string>180</string>
             </property>
            </widget>
           </item>
