@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
     , position_{0}
     , timerPushButton_{nullptr}
     , iconSize_{48}
-    , iconSizeIncrement_{-1}
 {
     ui->setupUi(this);
     ui->horizontalLayoutDisplay->addWidget(widgetTurntable_);
@@ -30,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
             });
     connect(turntableClient_, &TurntableClient::requestFailed,
             this, [this](const QUrl &, int httpStatus, const QString &error) {
+            enableButtons();
             });
 
     connect(turntableClient_, &TurntableClient::homingOffsetReceived,
@@ -47,22 +47,21 @@ MainWindow::MainWindow(QWidget *parent)
             {
         if(timerPushButton_ )
             {
-                if(timerPushButton_->iconSize().height() >= 48)
+                if(timerPushButton_->iconSize().height() == 48)
                 {
-                    iconSizeIncrement_ = -5;
+                    iconSize_ = 32;
                 }
-                else if (timerPushButton_->iconSize().height() <= 32)
+                else
                 {
-                    iconSizeIncrement_ = 5;
+                    iconSize_ = 48;
                 }
 
-                iconSize_ += iconSizeIncrement_;
 
                 timerPushButton_->setIconSize(QSize(iconSize_, iconSize_));
             }
             });
 
-    timer_.start(150);
+    timer_.start(750);
 
 
     updateWidgetTurntable();
@@ -190,10 +189,8 @@ void MainWindow::updateWidgetTurntable()
 
 void MainWindow::on_pushButtonInit_clicked()
 {
-    timer_.stop();
-    timerPushButton_ = ui->pushButtonInit;
-    timer_.start();
     disableButtons();
+    setBlinkingIcon(ui->pushButtonLowLevelInit);
     turntableClient_->logicalInit();
     position_ = -1;
 }
@@ -205,10 +202,18 @@ void MainWindow::disableButtons()
 
 void MainWindow::enableButtons()
 {
+    setBlinkingIcon(nullptr);
     setEnableButtons(true);
 }
 
 void MainWindow::setEnableButtons(bool enable)
 {
     ui->pushButtonInit->setEnabled(enable);
+}
+
+void MainWindow::setBlinkingIcon(QPushButton * button)
+{
+    timer_.stop();
+    timerPushButton_ = button;
+    timer_.start();
 }

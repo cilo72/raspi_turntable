@@ -908,6 +908,12 @@ moc_mainwindow.cpp: ../../mainwindow.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/qicon.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QTimer \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qtimer.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qbasictimer.h \
 		../../turntableclient.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QObject \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QString \
@@ -1220,6 +1226,12 @@ main.o: ../../main.cpp ../../mainwindow.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/qicon.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QTimer \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qtimer.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qbasictimer.h \
 		../../turntableclient.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QObject \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QString \
@@ -1346,6 +1358,12 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/qicon.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QTimer \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qtimer.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qbasictimer.h \
 		../../turntableclient.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QObject \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QString \
@@ -1353,32 +1371,7 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QUrlQuery \
 		../../widgetturntable.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget \
-		ui_mainwindow.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QVariant \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QFrame \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QGridLayout \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QSpacerItem \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QStackedWidget \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qstackedwidget.h \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
 
 turntableclient.o: ../../turntableclient.cpp ../../turntableclient.h \

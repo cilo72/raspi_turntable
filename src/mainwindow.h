@@ -68,10 +68,10 @@ private:
     QTimer timer_;
     QPushButton * timerPushButton_;
     int32_t iconSize_;
-    int32_t iconSizeIncrement_;
 
     void updateWidgetTurntable();
     void disableButtons();
     void enableButtons();
     void setEnableButtons(bool enable);
+    void setBlinkingIcon(QPushButton * button);
 };
