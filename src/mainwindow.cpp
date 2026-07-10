@@ -43,7 +43,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(widgetTurntable_,  &WidgetTurntable::trackClicked, this, [this] (int track)
             {
             position_ = track;
-            updateWidgetTurntable();
+            widgetTurntable_->setBridgePosition(track);
+            widgetTurntable_->setTargetPosition(track);
             });
 
     connect(&timer_, &QTimer::timeout, this, [this] ()
