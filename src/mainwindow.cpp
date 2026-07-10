@@ -29,7 +29,6 @@ MainWindow::MainWindow(QWidget *parent)
             });
     connect(turntableClient_, &TurntableClient::requestFailed,
             this, [this](const QUrl &, int httpStatus, const QString &error) {
-            enableButtons();
             });
 
     connect(turntableClient_, &TurntableClient::homingOffsetReceived,
@@ -47,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
             {
         if(timerPushButton_ )
             {
-                if(timerPushButton_->iconSize().height() == 48)
+                if(iconSize_ == 48)
                 {
                     iconSize_ = 32;
                 }
@@ -55,8 +54,6 @@ MainWindow::MainWindow(QWidget *parent)
                 {
                     iconSize_ = 48;
                 }
-
-
                 timerPushButton_->setIconSize(QSize(iconSize_, iconSize_));
             }
             });
@@ -189,8 +186,8 @@ void MainWindow::updateWidgetTurntable()
 
 void MainWindow::on_pushButtonInit_clicked()
 {
+    setBlinkingButton(ui->pushButtonInit);
     disableButtons();
-    setBlinkingIcon(ui->pushButtonLowLevelInit);
     turntableClient_->logicalInit();
     position_ = -1;
 }
@@ -202,7 +199,7 @@ void MainWindow::disableButtons()
 
 void MainWindow::enableButtons()
 {
-    setBlinkingIcon(nullptr);
+    setBlinkingButton(nullptr);
     setEnableButtons(true);
 }
 
@@ -211,7 +208,7 @@ void MainWindow::setEnableButtons(bool enable)
     ui->pushButtonInit->setEnabled(enable);
 }
 
-void MainWindow::setBlinkingIcon(QPushButton * button)
+void MainWindow::setBlinkingButton(QPushButton * button)
 {
     timer_.stop();
     timerPushButton_ = button;

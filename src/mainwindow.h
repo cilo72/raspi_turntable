@@ -73,5 +73,5 @@ private:
     void disableButtons();
     void enableButtons();
     void setEnableButtons(bool enable);
-    void setBlinkingIcon(QPushButton * button);
+    void setBlinkingButton(QPushButton * button);
 };
