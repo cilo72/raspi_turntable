@@ -272,8 +272,6 @@ public:
 
         horizontalLayout_2->addLayout(gridLayout_2);
 
-        horizontalLayout_2->setStretch(0, 2);
-        horizontalLayout_2->setStretch(1, 2);
         stackedWidget->addWidget(pageMain);
         pageLowLevel = new QWidget();
         pageLowLevel->setObjectName(QString::fromUtf8("pageLowLevel"));

@@ -27,7 +27,8 @@ MainWindow::MainWindow(QWidget *parent)
             position_ = state.logicalPosition;
             updateWidgetTurntable();
             enableButtons();
-            turntableClient_->readHomingOffset();
+            //turntableClient_->readHomingOffset();
+
 
             });
     connect(turntableClient_, &TurntableClient::requestFailed,
@@ -65,8 +66,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     updateWidgetTurntable();
-    turntableClient_->readHomingOffset();
-    turntableClient_->refreshState();
+    //turntableClient_->readHomingOffset();
+    //turntableClient_->refreshState();
 }
 
 MainWindow::~MainWindow()
