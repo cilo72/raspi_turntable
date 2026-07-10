@@ -217,8 +217,15 @@ void MainWindow::setBlinkingButton(QPushButton * button)
     timer_.stop();
     if(button == nullptr)
     {
-        timerPushButton_->setIconSize(QSize(iconSize_, iconSize_));
+        timerPushButton_->setIconSize(QSize(ICON_SIZE_LARGE, ICON_SIZE_LARGE));
     }
     timerPushButton_ = button;
     timer_.start();
+}
+void MainWindow::on_pushButtonTurn_clicked()
+{
+    setBlinkingButton(ui->pushButtonTurn);
+    disableButtons();
+    turntableClient_->turnTo(position_);
+
 }

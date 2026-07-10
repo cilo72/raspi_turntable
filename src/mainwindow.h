@@ -60,6 +60,8 @@ private slots:
 
     void on_pushButtonInit_clicked();
 
+    void on_pushButtonTurn_clicked();
+
 private:
     Ui::MainWindow *ui;
     TurntableClient *turntableClient_;
