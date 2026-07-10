@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent)
             ui->labelLowLevelLastAction->setText(QString("%1").arg(state.lastAction));
             ui->labelLowLevelAxisPosition->setText(QString("%1").arg(state.position));
             position_ = state.logicalPosition;
+            widgetTurntable_->setTargetPosition(track);
+            widgetTurntable_->setBridgePosition(track);
             updateWidgetTurntable();
             enableButtons();
             //turntableClient_->readHomingOffset();
@@ -42,8 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(widgetTurntable_,  &WidgetTurntable::trackClicked, this, [this] (int track)
             {
-            position_ = track;
-            widgetTurntable_->setBridgePosition(track);
+            position_ = track;            
             widgetTurntable_->setTargetPosition(track);
             });
 
