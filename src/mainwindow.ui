@@ -109,8 +109,14 @@
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item row="5" column="0" colspan="3">
+          <item row="2" column="0" colspan="3">
            <widget class="QLabel" name="label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="font">
              <font>
               <pointsize>20</pointsize>
@@ -125,18 +131,18 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="2">
+          <item row="3" column="2">
            <widget class="QPushButton" name="pushButton_7">
             <property name="minimumSize">
              <size>
-              <width>80</width>
-              <height>50</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>80</width>
-              <height>50</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="font">
@@ -156,12 +162,18 @@ QPushButton {
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="3" column="0">
            <widget class="QPushButton" name="pushButton_6">
+            <property name="minimumSize">
+             <size>
+              <width>70</width>
+              <height>70</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
-              <width>80</width>
-              <height>50</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="font">
@@ -184,14 +196,14 @@ QPushButton {
            <widget class="QPushButton" name="pushButton_8">
             <property name="minimumSize">
              <size>
-              <width>80</width>
-              <height>50</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>80</width>
-              <height>50</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="font">
@@ -213,17 +225,17 @@ QPushButton {
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QPushButton" name="pushButton_5">
+           <widget class="QPushButton" name="pushButtonTurn">
             <property name="minimumSize">
              <size>
-              <width>80</width>
-              <height>50</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>80</width>
-              <height>50</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="font">
@@ -245,30 +257,17 @@ QPushButton {
            </widget>
           </item>
           <item row="3" column="1">
-           <spacer name="verticalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="6" column="1">
            <widget class="QPushButton" name="pushButton_9">
             <property name="minimumSize">
              <size>
-              <width>80</width>
-              <height>50</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>80</width>
-              <height>50</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="font">
@@ -291,18 +290,18 @@ QPushButton {
             </property>
            </widget>
           </item>
-          <item row="2" column="2">
+          <item row="1" column="2">
            <widget class="QPushButton" name="pushButtonPlus">
             <property name="minimumSize">
              <size>
-              <width>80</width>
-              <height>50</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>80</width>
-              <height>80</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="font">
@@ -316,18 +315,18 @@ QPushButton {
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="1" column="0">
            <widget class="QPushButton" name="pushButtonMinus">
             <property name="minimumSize">
              <size>
-              <width>80</width>
-              <height>50</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>80</width>
-              <height>80</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
             <property name="font">
@@ -341,18 +340,40 @@ QPushButton {
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <spacer name="verticalSpacer_6">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
+          <item row="0" column="1">
+           <widget class="QPushButton" name="pushButtonInit">
+            <property name="minimumSize">
              <size>
-              <width>20</width>
-              <height>40</height>
+              <width>70</width>
+              <height>70</height>
              </size>
             </property>
-           </spacer>
+            <property name="maximumSize">
+             <size>
+              <width>70</width>
+              <height>70</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources/resources.qrc">
+              <normaloff>:/images/rocket-lunch.svg</normaloff>:/images/rocket-lunch.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>48</width>
+              <height>48</height>
+             </size>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="autoExclusive">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -1117,6 +1138,9 @@ QPushButton {
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources/resources.qrc"/>
+  <include location="resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

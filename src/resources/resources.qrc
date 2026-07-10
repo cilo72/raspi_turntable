@@ -8,5 +8,6 @@
         <file>refresh.svg</file>
         <file>resources.qrc</file>
         <file>rotate-right.svg</file>
+        <file>rocket-lunch.svg</file>
     </qresource>
 </RCC>

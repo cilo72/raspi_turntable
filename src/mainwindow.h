@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QMainWindow>
+#include <QPushButton>
+#include <QTimer>
 #include "turntableclient.h"
 #include "widgetturntable.h"
 
@@ -56,11 +58,20 @@ private slots:
 
     void on_pushButtonPlus_clicked();
 
+    void on_pushButtonInit_clicked();
+
 private:
     Ui::MainWindow *ui;
     TurntableClient *turntableClient_;
     WidgetTurntable * widgetTurntable_;
     int32_t position_;
+    QTimer timer_;
+    QPushButton * timerPushButton_;
+    int32_t iconSize_;
+    int32_t iconSizeIncrement_;
 
     void updateWidgetTurntable();
+    void disableButtons();
+    void enableButtons();
+    void setEnableButtons(bool enable);
 };

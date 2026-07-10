@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
@@ -41,12 +42,11 @@ public:
     QPushButton *pushButton_7;
     QPushButton *pushButton_6;
     QPushButton *pushButton_8;
-    QPushButton *pushButton_5;
-    QSpacerItem *verticalSpacer_3;
+    QPushButton *pushButtonTurn;
     QPushButton *pushButton_9;
     QPushButton *pushButtonPlus;
     QPushButton *pushButtonMinus;
-    QSpacerItem *verticalSpacer_6;
+    QPushButton *pushButtonInit;
     QWidget *pageLowLevel;
     QVBoxLayout *verticalLayout_2;
     QGridLayout *gridLayout;
@@ -158,18 +158,23 @@ public:
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
         label = new QLabel(pageMain);
         label->setObjectName(QString::fromUtf8("label"));
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy1);
         QFont font1;
         font1.setPointSize(20);
         font1.setBold(true);
         label->setFont(font1);
         label->setAlignment(Qt::AlignCenter);
 
-        gridLayout_2->addWidget(label, 5, 0, 1, 3);
+        gridLayout_2->addWidget(label, 2, 0, 1, 3);
 
         pushButton_7 = new QPushButton(pageMain);
         pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
-        pushButton_7->setMinimumSize(QSize(80, 50));
-        pushButton_7->setMaximumSize(QSize(80, 50));
+        pushButton_7->setMinimumSize(QSize(70, 70));
+        pushButton_7->setMaximumSize(QSize(70, 70));
         QFont font2;
         font2.setPointSize(16);
         font2.setBold(true);
@@ -182,11 +187,12 @@ public:
 "}\n"
 ""));
 
-        gridLayout_2->addWidget(pushButton_7, 6, 2, 1, 1);
+        gridLayout_2->addWidget(pushButton_7, 3, 2, 1, 1);
 
         pushButton_6 = new QPushButton(pageMain);
         pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
-        pushButton_6->setMaximumSize(QSize(80, 50));
+        pushButton_6->setMinimumSize(QSize(70, 70));
+        pushButton_6->setMaximumSize(QSize(70, 70));
         pushButton_6->setFont(font2);
         pushButton_6->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    padding-top: 5px;\n"
@@ -195,12 +201,12 @@ public:
 "}\n"
 ""));
 
-        gridLayout_2->addWidget(pushButton_6, 6, 0, 1, 1);
+        gridLayout_2->addWidget(pushButton_6, 3, 0, 1, 1);
 
         pushButton_8 = new QPushButton(pageMain);
         pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        pushButton_8->setMinimumSize(QSize(80, 50));
-        pushButton_8->setMaximumSize(QSize(80, 50));
+        pushButton_8->setMinimumSize(QSize(70, 70));
+        pushButton_8->setMaximumSize(QSize(70, 70));
         QFont font3;
         font3.setPointSize(10);
         font3.setBold(true);
@@ -213,27 +219,23 @@ public:
 
         gridLayout_2->addWidget(pushButton_8, 0, 2, 1, 1);
 
-        pushButton_5 = new QPushButton(pageMain);
-        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setMinimumSize(QSize(80, 50));
-        pushButton_5->setMaximumSize(QSize(80, 50));
-        pushButton_5->setFont(font2);
-        pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        pushButtonTurn = new QPushButton(pageMain);
+        pushButtonTurn->setObjectName(QString::fromUtf8("pushButtonTurn"));
+        pushButtonTurn->setMinimumSize(QSize(70, 70));
+        pushButtonTurn->setMaximumSize(QSize(70, 70));
+        pushButtonTurn->setFont(font2);
+        pushButtonTurn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "     padding-top: 5px;\n"
 "     padding-bottom: 5px;\n"
 "     image: url(:/images/rotate-right.svg);\n"
 "}"));
 
-        gridLayout_2->addWidget(pushButton_5, 0, 0, 1, 1);
-
-        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_2->addItem(verticalSpacer_3, 3, 1, 1, 1);
+        gridLayout_2->addWidget(pushButtonTurn, 0, 0, 1, 1);
 
         pushButton_9 = new QPushButton(pageMain);
         pushButton_9->setObjectName(QString::fromUtf8("pushButton_9"));
-        pushButton_9->setMinimumSize(QSize(80, 50));
-        pushButton_9->setMaximumSize(QSize(80, 50));
+        pushButton_9->setMinimumSize(QSize(70, 70));
+        pushButton_9->setMaximumSize(QSize(70, 70));
         pushButton_9->setFont(font2);
         pushButton_9->setStyleSheet(QString::fromUtf8("\n"
 "QPushButton {\n"
@@ -243,30 +245,39 @@ public:
 "}\n"
 ""));
 
-        gridLayout_2->addWidget(pushButton_9, 6, 1, 1, 1);
+        gridLayout_2->addWidget(pushButton_9, 3, 1, 1, 1);
 
         pushButtonPlus = new QPushButton(pageMain);
         pushButtonPlus->setObjectName(QString::fromUtf8("pushButtonPlus"));
-        pushButtonPlus->setMinimumSize(QSize(80, 50));
-        pushButtonPlus->setMaximumSize(QSize(80, 80));
+        pushButtonPlus->setMinimumSize(QSize(70, 70));
+        pushButtonPlus->setMaximumSize(QSize(70, 70));
         QFont font4;
         font4.setPointSize(32);
         font4.setBold(true);
         pushButtonPlus->setFont(font4);
 
-        gridLayout_2->addWidget(pushButtonPlus, 2, 2, 1, 1);
+        gridLayout_2->addWidget(pushButtonPlus, 1, 2, 1, 1);
 
         pushButtonMinus = new QPushButton(pageMain);
         pushButtonMinus->setObjectName(QString::fromUtf8("pushButtonMinus"));
-        pushButtonMinus->setMinimumSize(QSize(80, 50));
-        pushButtonMinus->setMaximumSize(QSize(80, 80));
+        pushButtonMinus->setMinimumSize(QSize(70, 70));
+        pushButtonMinus->setMaximumSize(QSize(70, 70));
         pushButtonMinus->setFont(font4);
 
-        gridLayout_2->addWidget(pushButtonMinus, 2, 0, 1, 1);
+        gridLayout_2->addWidget(pushButtonMinus, 1, 0, 1, 1);
 
-        verticalSpacer_6 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        pushButtonInit = new QPushButton(pageMain);
+        pushButtonInit->setObjectName(QString::fromUtf8("pushButtonInit"));
+        pushButtonInit->setMinimumSize(QSize(70, 70));
+        pushButtonInit->setMaximumSize(QSize(70, 70));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/images/rocket-lunch.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButtonInit->setIcon(icon);
+        pushButtonInit->setIconSize(QSize(48, 48));
+        pushButtonInit->setCheckable(true);
+        pushButtonInit->setAutoExclusive(true);
 
-        gridLayout_2->addItem(verticalSpacer_6, 1, 0, 1, 1);
+        gridLayout_2->addWidget(pushButtonInit, 0, 1, 1, 1);
 
 
         horizontalLayout_2->addLayout(gridLayout_2);
@@ -637,10 +648,11 @@ public:
         pushButtonPageLowLevel->setText(QCoreApplication::translate("MainWindow", "Low Level", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Power", nullptr));
         pushButton_8->setText(QCoreApplication::translate("MainWindow", "180", nullptr));
-        pushButton_5->setText(QString());
+        pushButtonTurn->setText(QString());
         pushButton_9->setText(QString());
         pushButtonPlus->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
         pushButtonMinus->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
+        pushButtonInit->setText(QString());
         label_10->setText(QCoreApplication::translate("MainWindow", "Last Action", nullptr));
         labelLowLevelLastAction->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "Homing offset", nullptr));

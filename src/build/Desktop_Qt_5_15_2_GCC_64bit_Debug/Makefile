@@ -783,6 +783,7 @@ qrc_resources.cpp: ../../resources/resources.qrc \
 		/home/dani/Qt/5.15.2/gcc_64/bin/rcc \
 		../../resources/refresh.svg \
 		../../resources/minus.svg \
+		../../resources/rocket-lunch.svg \
 		../../resources/circle-full.svg \
 		../../resources/power.svg \
 		../../resources/circle-empty.svg \
