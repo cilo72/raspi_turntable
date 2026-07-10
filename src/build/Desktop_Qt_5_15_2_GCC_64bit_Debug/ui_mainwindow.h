@@ -38,15 +38,15 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QHBoxLayout *horizontalLayoutDisplay;
     QGridLayout *gridLayout_2;
-    QLabel *label;
+    QPushButton *pushButtonTurn;
+    QPushButton *pushButton_8;
     QPushButton *pushButton_7;
     QPushButton *pushButton_6;
-    QPushButton *pushButton_8;
-    QPushButton *pushButtonTurn;
-    QPushButton *pushButton_9;
-    QPushButton *pushButtonPlus;
     QPushButton *pushButtonMinus;
     QPushButton *pushButtonInit;
+    QLabel *label;
+    QPushButton *pushButton_9;
+    QPushButton *pushButtonPlus;
     QWidget *pageLowLevel;
     QVBoxLayout *verticalLayout_2;
     QGridLayout *gridLayout;
@@ -156,36 +156,45 @@ public:
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(pageMain);
-        label->setObjectName(QString::fromUtf8("label"));
-        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Maximum);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
-        label->setSizePolicy(sizePolicy1);
+        pushButtonTurn = new QPushButton(pageMain);
+        pushButtonTurn->setObjectName(QString::fromUtf8("pushButtonTurn"));
+        pushButtonTurn->setMinimumSize(QSize(70, 70));
+        pushButtonTurn->setMaximumSize(QSize(70, 70));
         QFont font1;
-        font1.setPointSize(20);
+        font1.setPointSize(16);
         font1.setBold(true);
-        label->setFont(font1);
-        label->setAlignment(Qt::AlignCenter);
+        pushButtonTurn->setFont(font1);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/images/rotate-right.svg"), QSize(), QIcon::Normal, QIcon::On);
+        pushButtonTurn->setIcon(icon);
+        pushButtonTurn->setIconSize(QSize(48, 48));
 
-        gridLayout_2->addWidget(label, 2, 0, 1, 3);
+        gridLayout_2->addWidget(pushButtonTurn, 0, 0, 1, 1);
+
+        pushButton_8 = new QPushButton(pageMain);
+        pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
+        pushButton_8->setMinimumSize(QSize(70, 70));
+        pushButton_8->setMaximumSize(QSize(70, 70));
+        QFont font2;
+        font2.setPointSize(10);
+        font2.setBold(true);
+        pushButton_8->setFont(font2);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/images/refresh.svg"), QSize(), QIcon::Normal, QIcon::On);
+        pushButton_8->setIcon(icon1);
+        pushButton_8->setIconSize(QSize(48, 48));
+
+        gridLayout_2->addWidget(pushButton_8, 0, 2, 1, 1);
 
         pushButton_7 = new QPushButton(pageMain);
         pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
         pushButton_7->setMinimumSize(QSize(70, 70));
         pushButton_7->setMaximumSize(QSize(70, 70));
-        QFont font2;
-        font2.setPointSize(16);
-        font2.setBold(true);
-        pushButton_7->setFont(font2);
-        pushButton_7->setStyleSheet(QString::fromUtf8("\n"
-"QPushButton {\n"
-"    padding-top: 5px;\n"
-"    padding-bottom: 5px;        \n"
-"    image: url(:/images/circle-empty.svg);\n"
-"}\n"
-""));
+        pushButton_7->setFont(font1);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/images/circle-empty.svg"), QSize(), QIcon::Normal, QIcon::On);
+        pushButton_7->setIcon(icon2);
+        pushButton_7->setIconSize(QSize(48, 48));
 
         gridLayout_2->addWidget(pushButton_7, 3, 2, 1, 1);
 
@@ -193,76 +202,22 @@ public:
         pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
         pushButton_6->setMinimumSize(QSize(70, 70));
         pushButton_6->setMaximumSize(QSize(70, 70));
-        pushButton_6->setFont(font2);
-        pushButton_6->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"    padding-top: 5px;\n"
-"    padding-bottom: 5px;\n"
-"    image: url(:/images/circle-full.svg);\n"
-"}\n"
-""));
+        pushButton_6->setFont(font1);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/images/circle-full.svg"), QSize(), QIcon::Normal, QIcon::On);
+        pushButton_6->setIcon(icon3);
+        pushButton_6->setIconSize(QSize(48, 48));
 
         gridLayout_2->addWidget(pushButton_6, 3, 0, 1, 1);
-
-        pushButton_8 = new QPushButton(pageMain);
-        pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        pushButton_8->setMinimumSize(QSize(70, 70));
-        pushButton_8->setMaximumSize(QSize(70, 70));
-        QFont font3;
-        font3.setPointSize(10);
-        font3.setBold(true);
-        pushButton_8->setFont(font3);
-        pushButton_8->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"     padding-top: 5px;\n"
-"     padding-bottom: 5px;\n"
-"	image: url(:/images/refresh.svg);\n"
-"}"));
-
-        gridLayout_2->addWidget(pushButton_8, 0, 2, 1, 1);
-
-        pushButtonTurn = new QPushButton(pageMain);
-        pushButtonTurn->setObjectName(QString::fromUtf8("pushButtonTurn"));
-        pushButtonTurn->setMinimumSize(QSize(70, 70));
-        pushButtonTurn->setMaximumSize(QSize(70, 70));
-        pushButtonTurn->setFont(font2);
-        pushButtonTurn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"     padding-top: 5px;\n"
-"     padding-bottom: 5px;\n"
-"     image: url(:/images/rotate-right.svg);\n"
-"}"));
-
-        gridLayout_2->addWidget(pushButtonTurn, 0, 0, 1, 1);
-
-        pushButton_9 = new QPushButton(pageMain);
-        pushButton_9->setObjectName(QString::fromUtf8("pushButton_9"));
-        pushButton_9->setMinimumSize(QSize(70, 70));
-        pushButton_9->setMaximumSize(QSize(70, 70));
-        pushButton_9->setFont(font2);
-        pushButton_9->setStyleSheet(QString::fromUtf8("\n"
-"QPushButton {\n"
-"    padding-top: 5px;\n"
-"    padding-bottom: 5px;    \n"
-"    image: url(:/images/power.svg);\n"
-"}\n"
-""));
-
-        gridLayout_2->addWidget(pushButton_9, 3, 1, 1, 1);
-
-        pushButtonPlus = new QPushButton(pageMain);
-        pushButtonPlus->setObjectName(QString::fromUtf8("pushButtonPlus"));
-        pushButtonPlus->setMinimumSize(QSize(70, 70));
-        pushButtonPlus->setMaximumSize(QSize(70, 70));
-        QFont font4;
-        font4.setPointSize(32);
-        font4.setBold(true);
-        pushButtonPlus->setFont(font4);
-
-        gridLayout_2->addWidget(pushButtonPlus, 1, 2, 1, 1);
 
         pushButtonMinus = new QPushButton(pageMain);
         pushButtonMinus->setObjectName(QString::fromUtf8("pushButtonMinus"));
         pushButtonMinus->setMinimumSize(QSize(70, 70));
         pushButtonMinus->setMaximumSize(QSize(70, 70));
-        pushButtonMinus->setFont(font4);
+        QFont font3;
+        font3.setPointSize(32);
+        font3.setBold(true);
+        pushButtonMinus->setFont(font3);
 
         gridLayout_2->addWidget(pushButtonMinus, 1, 0, 1, 1);
 
@@ -270,18 +225,55 @@ public:
         pushButtonInit->setObjectName(QString::fromUtf8("pushButtonInit"));
         pushButtonInit->setMinimumSize(QSize(70, 70));
         pushButtonInit->setMaximumSize(QSize(70, 70));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/images/rocket-lunch.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButtonInit->setIcon(icon);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/images/rocket-lunch.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButtonInit->setIcon(icon4);
         pushButtonInit->setIconSize(QSize(48, 48));
-        pushButtonInit->setCheckable(true);
-        pushButtonInit->setAutoExclusive(true);
+        pushButtonInit->setCheckable(false);
+        pushButtonInit->setAutoExclusive(false);
 
         gridLayout_2->addWidget(pushButtonInit, 0, 1, 1, 1);
+
+        label = new QLabel(pageMain);
+        label->setObjectName(QString::fromUtf8("label"));
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy1);
+        QFont font4;
+        font4.setPointSize(20);
+        font4.setBold(true);
+        label->setFont(font4);
+        label->setAlignment(Qt::AlignCenter);
+
+        gridLayout_2->addWidget(label, 2, 0, 1, 3);
+
+        pushButton_9 = new QPushButton(pageMain);
+        pushButton_9->setObjectName(QString::fromUtf8("pushButton_9"));
+        pushButton_9->setMinimumSize(QSize(70, 70));
+        pushButton_9->setMaximumSize(QSize(70, 70));
+        pushButton_9->setFont(font1);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/images/power.svg"), QSize(), QIcon::Normal, QIcon::On);
+        pushButton_9->setIcon(icon5);
+        pushButton_9->setIconSize(QSize(48, 48));
+
+        gridLayout_2->addWidget(pushButton_9, 3, 1, 1, 1);
+
+        pushButtonPlus = new QPushButton(pageMain);
+        pushButtonPlus->setObjectName(QString::fromUtf8("pushButtonPlus"));
+        pushButtonPlus->setMinimumSize(QSize(70, 70));
+        pushButtonPlus->setMaximumSize(QSize(70, 70));
+        pushButtonPlus->setFont(font3);
+
+        gridLayout_2->addWidget(pushButtonPlus, 1, 2, 1, 1);
 
 
         horizontalLayout_2->addLayout(gridLayout_2);
 
+        horizontalLayout_2->setStretch(0, 2);
+        horizontalLayout_2->setStretch(1, 2);
         stackedWidget->addWidget(pageMain);
         pageLowLevel = new QWidget();
         pageLowLevel->setObjectName(QString::fromUtf8("pageLowLevel"));
@@ -311,7 +303,7 @@ public:
 
         labelLowLevelLastAction = new QLabel(frame_4);
         labelLowLevelLastAction->setObjectName(QString::fromUtf8("labelLowLevelLastAction"));
-        labelLowLevelLastAction->setFont(font2);
+        labelLowLevelLastAction->setFont(font1);
         labelLowLevelLastAction->setAlignment(Qt::AlignCenter);
 
         verticalLayout_7->addWidget(labelLowLevelLastAction);
@@ -334,7 +326,7 @@ public:
 
         labelLowLevelHomeOffset = new QLabel(frame_20);
         labelLowLevelHomeOffset->setObjectName(QString::fromUtf8("labelLowLevelHomeOffset"));
-        labelLowLevelHomeOffset->setFont(font2);
+        labelLowLevelHomeOffset->setFont(font1);
         labelLowLevelHomeOffset->setAlignment(Qt::AlignCenter);
 
         verticalLayout_6->addWidget(labelLowLevelHomeOffset);
@@ -357,7 +349,7 @@ public:
 
         labelLowLevelAxisPosition = new QLabel(frame_2);
         labelLowLevelAxisPosition->setObjectName(QString::fromUtf8("labelLowLevelAxisPosition"));
-        labelLowLevelAxisPosition->setFont(font2);
+        labelLowLevelAxisPosition->setFont(font1);
         labelLowLevelAxisPosition->setAlignment(Qt::AlignCenter);
 
         verticalLayout_3->addWidget(labelLowLevelAxisPosition);
@@ -383,7 +375,7 @@ public:
 
         labelLowLevelLogicalPosition = new QLabel(frame);
         labelLowLevelLogicalPosition->setObjectName(QString::fromUtf8("labelLowLevelLogicalPosition"));
-        labelLowLevelLogicalPosition->setFont(font2);
+        labelLowLevelLogicalPosition->setFont(font1);
         labelLowLevelLogicalPosition->setAlignment(Qt::AlignCenter);
 
         verticalLayout_5->addWidget(labelLowLevelLogicalPosition);
@@ -406,7 +398,7 @@ public:
 
         labelLowLevelLastError = new QLabel(frame1);
         labelLowLevelLastError->setObjectName(QString::fromUtf8("labelLowLevelLastError"));
-        labelLowLevelLastError->setFont(font2);
+        labelLowLevelLastError->setFont(font1);
         labelLowLevelLastError->setAlignment(Qt::AlignCenter);
 
         verticalLayout_8->addWidget(labelLowLevelLastError);
@@ -424,7 +416,7 @@ public:
         verticalLayout_9->setObjectName(QString::fromUtf8("verticalLayout_9"));
         label_4 = new QLabel(frame_41);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setFont(font1);
+        label_4->setFont(font4);
         label_4->setAlignment(Qt::AlignCenter);
 
         verticalLayout_9->addWidget(label_4);
@@ -460,7 +452,7 @@ public:
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         label_5 = new QLabel(frame_3);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setFont(font1);
+        label_5->setFont(font4);
         label_5->setAlignment(Qt::AlignCenter);
 
         verticalLayout_4->addWidget(label_5);
@@ -503,7 +495,7 @@ public:
         verticalLayout_10->setObjectName(QString::fromUtf8("verticalLayout_10"));
         label_6 = new QLabel(frame_5);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setFont(font1);
+        label_6->setFont(font4);
         label_6->setAlignment(Qt::AlignCenter);
 
         verticalLayout_10->addWidget(label_6);
@@ -553,7 +545,7 @@ public:
         verticalLayout_11->setObjectName(QString::fromUtf8("verticalLayout_11"));
         label_7 = new QLabel(frame_6);
         label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setFont(font1);
+        label_7->setFont(font4);
         label_7->setAlignment(Qt::AlignCenter);
 
         verticalLayout_11->addWidget(label_7);
@@ -646,13 +638,15 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         pushButtonPageMain->setText(QCoreApplication::translate("MainWindow", "Main", nullptr));
         pushButtonPageLowLevel->setText(QCoreApplication::translate("MainWindow", "Low Level", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "Power", nullptr));
-        pushButton_8->setText(QCoreApplication::translate("MainWindow", "180", nullptr));
         pushButtonTurn->setText(QString());
-        pushButton_9->setText(QString());
-        pushButtonPlus->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
+        pushButton_8->setText(QString());
+        pushButton_7->setText(QString());
+        pushButton_6->setText(QString());
         pushButtonMinus->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         pushButtonInit->setText(QString());
+        label->setText(QCoreApplication::translate("MainWindow", "Power", nullptr));
+        pushButton_9->setText(QString());
+        pushButtonPlus->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
         label_10->setText(QCoreApplication::translate("MainWindow", "Last Action", nullptr));
         labelLowLevelLastAction->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "Homing offset", nullptr));

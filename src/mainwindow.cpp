@@ -3,6 +3,9 @@
 
 #include <QString>
 
+static constexpr int32_t ICON_SIZE_LARGE = 48;
+static constexpr int32_t ICON_SIZE_SMALL = 32;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -10,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     , widgetTurntable_(new WidgetTurntable(this))
     , position_{0}
     , timerPushButton_{nullptr}
-    , iconSize_{48}
+    , iconSize_{ICON_SIZE_LARGE}
 {
     ui->setupUi(this);
     ui->horizontalLayoutDisplay->addWidget(widgetTurntable_);
@@ -46,13 +49,13 @@ MainWindow::MainWindow(QWidget *parent)
             {
         if(timerPushButton_ )
             {
-                if(iconSize_ == 48)
+                if(iconSize_ == ICON_SIZE_LARGE)
                 {
-                    iconSize_ = 32;
+                    iconSize_ = ICON_SIZE_SMALL;
                 }
                 else
                 {
-                    iconSize_ = 48;
+                    iconSize_ = ICON_SIZE_LARGE;
                 }
                 timerPushButton_->setIconSize(QSize(iconSize_, iconSize_));
             }
@@ -211,6 +214,10 @@ void MainWindow::setEnableButtons(bool enable)
 void MainWindow::setBlinkingButton(QPushButton * button)
 {
     timer_.stop();
+    if(button == nullptr)
+    {
+        timerPushButton_->setIconSize(QSize(iconSize_, iconSize_));
+    }
     timerPushButton_ = button;
     timer_.start();
 }
