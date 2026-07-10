@@ -1,8 +1,12 @@
 <RCC>
     <qresource prefix="/images">
-        <file>images/refresh.svg</file>
-        <file>images/minus.svg</file>
-        <file>images/plus.svg</file>
-        <file>images/rotate-right.svg</file>
+        <file>circle-empty.svg</file>
+        <file>circle-full.svg</file>
+        <file>minus.svg</file>
+        <file>plus.svg</file>
+        <file>power.svg</file>
+        <file>refresh.svg</file>
+        <file>resources.qrc</file>
+        <file>rotate-right.svg</file>
     </qresource>
 </RCC>
