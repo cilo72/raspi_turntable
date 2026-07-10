@@ -52,22 +52,15 @@ private slots:
 
     void on_pushButtonPageLowLevel_clicked();
 
-    void on_horizontalSlider_actionTriggered(int action);
-
-    void on_horizontalSlider_sliderMoved(int position);
-
-    void on_horizontalSliderTargetPosition_sliderMoved(int position);
-
     void on_pushButtonMinus_clicked();
 
     void on_pushButtonPlus_clicked();
-
-    void on_horizontalSliderTargetPosition_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
     TurntableClient *turntableClient_;
     WidgetTurntable * widgetTurntable_;
+    int32_t position_;
 
     void updateWidgetTurntable();
 };
