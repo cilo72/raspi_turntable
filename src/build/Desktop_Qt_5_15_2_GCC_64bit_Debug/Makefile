@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_QML_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_WEBSOCKETS_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++1z -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../../../src -I. -I/home/dani/Qt/5.15.2/gcc_64/include -I/home/dani/Qt/5.15.2/gcc_64/include/QtSvg -I/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/dani/Qt/5.15.2/gcc_64/include/QtGui -I/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/dani/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/libdrm -I. -I/home/dani/Qt/5.15.2/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../../../src -I. -I/home/dani/Qt/5.15.2/gcc_64/include -I/home/dani/Qt/5.15.2/gcc_64/include/QtSvg -I/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/dani/Qt/5.15.2/gcc_64/include/QtGui -I/home/dani/Qt/5.15.2/gcc_64/include/QtWebSockets -I/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/dani/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/libdrm -I. -I/home/dani/Qt/5.15.2/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/dani/Qt/5.15.2/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = raspi-turntable1.0.0
 DISTDIR = /home/dani/Documents/scm/raspi-turntable/src/build/Desktop_Qt_5_15_2_GCC_64bit_Debug/.tmp/raspi-turntable1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/dani/Qt/5.15.2/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/dani/Qt/5.15.2/gcc_64/lib/libQt5Svg.so /home/dani/Qt/5.15.2/gcc_64/lib/libQt5Widgets.so /home/dani/Qt/5.15.2/gcc_64/lib/libQt5Gui.so /home/dani/Qt/5.15.2/gcc_64/lib/libQt5Network.so /home/dani/Qt/5.15.2/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /home/dani/Qt/5.15.2/gcc_64/lib/libQt5Svg.so /home/dani/Qt/5.15.2/gcc_64/lib/libQt5Widgets.so /home/dani/Qt/5.15.2/gcc_64/lib/libQt5Gui.so /home/dani/Qt/5.15.2/gcc_64/lib/libQt5WebSockets.so /home/dani/Qt/5.15.2/gcc_64/lib/libQt5Network.so /home/dani/Qt/5.15.2/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -923,7 +923,7 @@ moc_mainwindow.cpp: ../../mainwindow.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget \
 		moc_predefs.h \
 		/home/dani/Qt/5.15.2/gcc_64/bin/moc
-	/home/dani/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include /home/dani/Documents/scm/raspi-turntable/src/build/Desktop_Qt_5_15_2_GCC_64bit_Debug/moc_predefs.h -I/home/dani/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I/home/dani/Documents/scm/raspi-turntable/src -I/home/dani/Qt/5.15.2/gcc_64/include -I/home/dani/Qt/5.15.2/gcc_64/include/QtSvg -I/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/dani/Qt/5.15.2/gcc_64/include/QtGui -I/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/dani/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../mainwindow.h -o moc_mainwindow.cpp
+	/home/dani/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include /home/dani/Documents/scm/raspi-turntable/src/build/Desktop_Qt_5_15_2_GCC_64bit_Debug/moc_predefs.h -I/home/dani/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I/home/dani/Documents/scm/raspi-turntable/src -I/home/dani/Qt/5.15.2/gcc_64/include -I/home/dani/Qt/5.15.2/gcc_64/include/QtSvg -I/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/dani/Qt/5.15.2/gcc_64/include/QtGui -I/home/dani/Qt/5.15.2/gcc_64/include/QtWebSockets -I/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/dani/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../mainwindow.h -o moc_mainwindow.cpp
 
 moc_turntableclient.cpp: ../../turntableclient.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QObject \
@@ -988,7 +988,7 @@ moc_turntableclient.cpp: ../../turntableclient.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QUrlQuery \
 		moc_predefs.h \
 		/home/dani/Qt/5.15.2/gcc_64/bin/moc
-	/home/dani/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include /home/dani/Documents/scm/raspi-turntable/src/build/Desktop_Qt_5_15_2_GCC_64bit_Debug/moc_predefs.h -I/home/dani/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I/home/dani/Documents/scm/raspi-turntable/src -I/home/dani/Qt/5.15.2/gcc_64/include -I/home/dani/Qt/5.15.2/gcc_64/include/QtSvg -I/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/dani/Qt/5.15.2/gcc_64/include/QtGui -I/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/dani/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../turntableclient.h -o moc_turntableclient.cpp
+	/home/dani/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include /home/dani/Documents/scm/raspi-turntable/src/build/Desktop_Qt_5_15_2_GCC_64bit_Debug/moc_predefs.h -I/home/dani/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I/home/dani/Documents/scm/raspi-turntable/src -I/home/dani/Qt/5.15.2/gcc_64/include -I/home/dani/Qt/5.15.2/gcc_64/include/QtSvg -I/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/dani/Qt/5.15.2/gcc_64/include/QtGui -I/home/dani/Qt/5.15.2/gcc_64/include/QtWebSockets -I/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/dani/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../turntableclient.h -o moc_turntableclient.cpp
 
 moc_widgetturntable.cpp: ../../widgetturntable.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget \
@@ -1096,7 +1096,7 @@ moc_widgetturntable.cpp: ../../widgetturntable.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
 		moc_predefs.h \
 		/home/dani/Qt/5.15.2/gcc_64/bin/moc
-	/home/dani/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include /home/dani/Documents/scm/raspi-turntable/src/build/Desktop_Qt_5_15_2_GCC_64bit_Debug/moc_predefs.h -I/home/dani/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I/home/dani/Documents/scm/raspi-turntable/src -I/home/dani/Qt/5.15.2/gcc_64/include -I/home/dani/Qt/5.15.2/gcc_64/include/QtSvg -I/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/dani/Qt/5.15.2/gcc_64/include/QtGui -I/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/dani/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../widgetturntable.h -o moc_widgetturntable.cpp
+	/home/dani/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include /home/dani/Documents/scm/raspi-turntable/src/build/Desktop_Qt_5_15_2_GCC_64bit_Debug/moc_predefs.h -I/home/dani/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I/home/dani/Documents/scm/raspi-turntable/src -I/home/dani/Qt/5.15.2/gcc_64/include -I/home/dani/Qt/5.15.2/gcc_64/include/QtSvg -I/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/dani/Qt/5.15.2/gcc_64/include/QtGui -I/home/dani/Qt/5.15.2/gcc_64/include/QtWebSockets -I/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/dani/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../widgetturntable.h -o moc_widgetturntable.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1371,7 +1371,30 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QUrlQuery \
 		../../widgetturntable.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QVariant \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/QIcon \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QFrame \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QGridLayout \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QSpacerItem \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QStackedWidget \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/qstackedwidget.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
 
 turntableclient.o: ../../turntableclient.cpp ../../turntableclient.h \
@@ -1479,7 +1502,19 @@ turntableclient.o: ../../turntableclient.cpp ../../turntableclient.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork/QNetworkReply \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork/qnetworkreply.h \
 		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QIODevice \
-		/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork/QNetworkRequest
+		/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork/QNetworkRequest \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/QTimer \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qtimer.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtCore/qbasictimer.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWebSockets/QWebSocket \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWebSockets/qwebsocket.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork/QAbstractSocket \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork/QNetworkProxy \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork/qnetworkproxy.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork/qhostaddress.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtNetwork/QSslError \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWebSockets/qwebsockets_global.h \
+		/home/dani/Qt/5.15.2/gcc_64/include/QtWebSockets/qwebsocketprotocol.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o turntableclient.o ../../turntableclient.cpp
 
 widgetturntable.o: ../../widgetturntable.cpp ../../widgetturntable.h \

@@ -1,4 +1,4 @@
-QT += widgets svg network
+QT += widgets svg network websockets
 
 CONFIG += c++17
 

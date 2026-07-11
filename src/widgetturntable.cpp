@@ -10,6 +10,8 @@ constexpr qreal CanvasSize = 1200.0;
 constexpr qreal Center = CanvasSize / 2.0;
 constexpr int PositionCount = 20;
 constexpr qreal PositionStep = 360.0 / PositionCount;
+constexpr int HundredthsPerDegree = 100;
+constexpr int FullRotationHundredths = 360 * HundredthsPerDegree;
 const QColor BridgeColor(0xcf, 0xcf, 0xcf);
 const QColor CenterDotColor(0x66, 0x66, 0x66);
 const QColor CenterHubColor(0xb8, 0xb8, 0xb8);
@@ -69,14 +71,17 @@ int WidgetTurntable::targetPosition() const
     return m_targetPosition;
 }
 
-void WidgetTurntable::setBridgePosition(int position)
+void WidgetTurntable::setBridgePosition(int positionHundredths)
 {
-    const int boundedPosition = qBound(0, position, PositionCount - 1);
+    int normalizedPosition = positionHundredths % FullRotationHundredths;
 
-    if (m_bridgePosition == boundedPosition)
+    if (normalizedPosition < 0)
+        normalizedPosition += FullRotationHundredths;
+
+    if (m_bridgePosition == normalizedPosition)
         return;
 
-    m_bridgePosition = boundedPosition;
+    m_bridgePosition = normalizedPosition;
     update();
 }
 
@@ -243,7 +248,7 @@ void WidgetTurntable::drawTurntable(QPainter &painter) const
 
     painter.save();
     painter.translate(Center, Center);
-    painter.rotate(m_bridgePosition * PositionStep);
+    painter.rotate(static_cast<qreal>(m_bridgePosition) / HundredthsPerDegree);
     painter.translate(-Center, -Center);
     drawBridge(painter);
     painter.restore();

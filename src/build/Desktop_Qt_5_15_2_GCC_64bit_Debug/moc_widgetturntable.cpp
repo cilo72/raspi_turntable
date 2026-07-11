@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_WidgetTurntable_t {
-    QByteArrayData data[7];
-    char stringdata0[87];
+    QByteArrayData data[8];
+    char stringdata0[106];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,12 +37,14 @@ QT_MOC_LITERAL(1, 16, 12), // "trackClicked"
 QT_MOC_LITERAL(2, 29, 0), // ""
 QT_MOC_LITERAL(3, 30, 11), // "trackNumber"
 QT_MOC_LITERAL(4, 42, 17), // "setBridgePosition"
-QT_MOC_LITERAL(5, 60, 8), // "position"
-QT_MOC_LITERAL(6, 69, 17) // "setTargetPosition"
+QT_MOC_LITERAL(5, 60, 18), // "positionHundredths"
+QT_MOC_LITERAL(6, 79, 17), // "setTargetPosition"
+QT_MOC_LITERAL(7, 97, 8) // "position"
 
     },
     "WidgetTurntable\0trackClicked\0\0trackNumber\0"
-    "setBridgePosition\0position\0setTargetPosition"
+    "setBridgePosition\0positionHundredths\0"
+    "setTargetPosition\0position"
 };
 #undef QT_MOC_LITERAL
 
@@ -71,7 +73,7 @@ static const uint qt_meta_data_WidgetTurntable[] = {
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    5,
-    QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void, QMetaType::Int,    7,
 
        0        // eod
 };

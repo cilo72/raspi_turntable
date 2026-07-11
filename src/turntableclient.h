@@ -7,6 +7,8 @@
 
 class QNetworkAccessManager;
 class QNetworkReply;
+class QTimer;
+class QWebSocket;
 
 class TurntableClient : public QObject
 {
@@ -28,6 +30,7 @@ public:
         int logicalPosition = -1;
         int homingOffset = 0;
         bool halInitialized = false;
+        bool moving = false;
         QString lastAction;
         int lastError = 0;
     };
@@ -75,10 +78,13 @@ signals:
     void logicalPositionReceived(int position);
     void constantsReceived(const TurntableClient::Constants &constants);
     void homingOffsetReceived(int homingOffset);
+    void axisPositionReceived(int positionHundredths, bool moving);
+    void positionStreamConnectedChanged(bool connected);
     void requestFailed(const QUrl &url, int httpStatus, const QString &error);
 
 private slots:
     void handleFinished(QNetworkReply *reply);
+    void handlePositionMessage(const QString &message);
 
 private:
     enum class RequestKind {
@@ -93,6 +99,8 @@ private:
     QUrl makeUrl(const QString &path, const QUrlQuery &query) const;
     void get(const QString &path, RequestKind kind);
     void post(const QString &path, const QUrlQuery &query = QUrlQuery());
+    void connectPositionStream();
+    void schedulePositionStreamReconnect();
 
     static State parseState(const QByteArray &body);
     static Constants parseConstants(const QByteArray &body);
@@ -101,6 +109,9 @@ private:
 private:
     QUrl baseUrl_;
     QNetworkAccessManager *network_;
+    QWebSocket *positionSocket_;
+    QTimer *positionReconnectTimer_;
+    int positionReconnectDelayMs_ = 500;
 };
 
 Q_DECLARE_METATYPE(TurntableClient::State)

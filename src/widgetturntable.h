@@ -17,7 +17,7 @@ public:
     int targetPosition() const;
 
 public slots:
-    void setBridgePosition(int position);
+    void setBridgePosition(int positionHundredths);
     void setTargetPosition(int position);
 
 signals:

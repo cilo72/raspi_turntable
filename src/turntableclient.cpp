@@ -5,12 +5,15 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QTimer>
 #include <QUrlQuery>
+#include <QWebSocket>
 
 namespace
 {
 constexpr const char *DefaultBaseUrl = "http://192.168.7.2";
 constexpr const char *KindProperty = "turntableRequestKind";
+constexpr int MaximumReconnectDelayMs = 5000;
 
 int jsonInt(const QJsonObject &object, const QString &key, int defaultValue = 0)
 {
@@ -51,13 +54,31 @@ TurntableClient::TurntableClient(QObject *parent)
 TurntableClient::TurntableClient(const QUrl &baseUrl, QObject *parent)
     : QObject(parent),
       baseUrl_(baseUrl),
-      network_(new QNetworkAccessManager(this))
+      network_(new QNetworkAccessManager(this)),
+      positionSocket_(new QWebSocket(QString(), QWebSocketProtocol::VersionLatest, this)),
+      positionReconnectTimer_(new QTimer(this))
 {
     qRegisterMetaType<TurntableClient::State>("TurntableClient::State");
     qRegisterMetaType<TurntableClient::Constants>("TurntableClient::Constants");
 
     connect(network_, &QNetworkAccessManager::finished,
             this, &TurntableClient::handleFinished);
+
+    positionReconnectTimer_->setSingleShot(true);
+    connect(positionReconnectTimer_, &QTimer::timeout,
+            this, &TurntableClient::connectPositionStream);
+    connect(positionSocket_, &QWebSocket::connected, this, [this]() {
+        positionReconnectDelayMs_ = 500;
+        emit positionStreamConnectedChanged(true);
+    });
+    connect(positionSocket_, &QWebSocket::disconnected, this, [this]() {
+        emit positionStreamConnectedChanged(false);
+        schedulePositionStreamReconnect();
+    });
+    connect(positionSocket_, &QWebSocket::textMessageReceived,
+            this, &TurntableClient::handlePositionMessage);
+
+    connectPositionStream();
 }
 
 QUrl TurntableClient::baseUrl() const
@@ -72,6 +93,57 @@ void TurntableClient::setBaseUrl(const QUrl &baseUrl)
 
     baseUrl_ = baseUrl;
     emit baseUrlChanged(baseUrl_);
+
+    positionSocket_->abort();
+    positionReconnectTimer_->stop();
+    positionReconnectDelayMs_ = 500;
+    connectPositionStream();
+}
+
+void TurntableClient::connectPositionStream()
+{
+    if (!baseUrl_.isValid() || baseUrl_.host().isEmpty()) {
+        schedulePositionStreamReconnect();
+        return;
+    }
+
+    QUrl url = baseUrl_;
+    url.setScheme(baseUrl_.scheme() == QStringLiteral("https")
+                      ? QStringLiteral("wss")
+                      : QStringLiteral("ws"));
+    url.setPath(QStringLiteral("/ws"));
+    url.setQuery(QString());
+    url.setFragment(QString());
+    positionSocket_->open(url);
+}
+
+void TurntableClient::schedulePositionStreamReconnect()
+{
+    if (positionReconnectTimer_->isActive())
+        return;
+
+    positionReconnectTimer_->start(positionReconnectDelayMs_);
+    positionReconnectDelayMs_ = qMin(positionReconnectDelayMs_ * 2,
+                                     MaximumReconnectDelayMs);
+}
+
+void TurntableClient::handlePositionMessage(const QString &message)
+{
+    QJsonParseError parseError;
+    const QJsonDocument document = QJsonDocument::fromJson(message.toUtf8(), &parseError);
+
+    if (parseError.error != QJsonParseError::NoError || !document.isObject())
+        return;
+
+    const QJsonObject object = document.object();
+    if (object.value(QStringLiteral("type")).toString() != QStringLiteral("position") ||
+        !object.value(QStringLiteral("position")).isDouble() ||
+        !object.value(QStringLiteral("moving")).isBool()) {
+        return;
+    }
+
+    emit axisPositionReceived(object.value(QStringLiteral("position")).toInt(),
+                              object.value(QStringLiteral("moving")).toBool());
 }
 
 void TurntableClient::refreshState()
@@ -278,6 +350,7 @@ TurntableClient::State TurntableClient::parseState(const QByteArray &body)
     state.logicalPosition = jsonInt(object, QStringLiteral("logical_position"), -1);
     state.homingOffset = jsonInt(object, QStringLiteral("homing_offset"));
     state.halInitialized = jsonBool(object, QStringLiteral("hal_initialized"));
+    state.moving = jsonBool(object, QStringLiteral("moving"));
     state.lastAction = jsonString(object, QStringLiteral("last_action"));
     state.lastError = jsonInt(object, QStringLiteral("last_error"));
 
