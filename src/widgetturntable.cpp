@@ -18,6 +18,7 @@ const QColor CenterHubColor(0xb8, 0xb8, 0xb8);
 const QColor DarkColor(0x11, 0x11, 0x11);
 const QColor EdgeColor(0x66, 0x66, 0x66);
 const QColor GuideColor(0xd0, 0xd0, 0xd0);
+const QColor DisabledRailColor(0x99, 0x99, 0x99);
 const QColor PitColor(0xf2, 0xf2, 0xf2);
 const QColor RailBedColor(0x8b, 0x5a, 0x2b);
 const QColor RimColor(0x88, 0x88, 0x88);
@@ -26,7 +27,8 @@ const QColor StrokeColor(0x22, 0x22, 0x22);
 const QColor TargetColor(0x1f, 0x6f, 0xd1);
 
 const int UsedTracks[] = {
-    0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+    0, 5, 6, 7, 8, 9,
+    10, 11, 12, 13, 14, 15, 16, 17, 18, 19
 };
 
 bool isUsedTrack(int track)
@@ -71,6 +73,17 @@ int WidgetTurntable::targetPosition() const
     return m_targetPosition;
 }
 
+bool WidgetTurntable::bridgeEnabled() const
+{
+    return m_bridgeEnabled;
+}
+
+bool WidgetTurntable::trackEnabled(int trackNumber) const
+{
+    return trackNumber >= 0 && trackNumber < PositionCount
+           && m_trackEnabled[trackNumber];
+}
+
 void WidgetTurntable::setBridgePosition(int positionHundredths)
 {
     int normalizedPosition = positionHundredths % FullRotationHundredths;
@@ -98,9 +111,31 @@ void WidgetTurntable::setTargetPosition(int position)
     update();
 }
 
+void WidgetTurntable::setBridgeEnabled(bool enabled)
+{
+    if (m_bridgeEnabled == enabled)
+        return;
+
+    m_bridgeEnabled = enabled;
+    update();
+    emit bridgeEnabledChanged(enabled);
+}
+
+void WidgetTurntable::setTrackEnabled(int trackNumber, bool enabled)
+{
+    if (trackNumber < 0 || trackNumber >= PositionCount
+        || m_trackEnabled[trackNumber] == enabled)
+        return;
+
+    m_trackEnabled[trackNumber] = enabled;
+    update();
+    emit trackEnabledChanged(trackNumber, enabled);
+}
+
 void WidgetTurntable::mousePressEvent(QMouseEvent *event)
 {
-    const int track = trackAtPoint(mapToWorld(event->pos()));
+    const QPointF worldPos = mapToWorld(event->pos());
+    const int track = trackAtPoint(worldPos);
 
     if (track >= 0)
         emit trackClicked(track);
@@ -172,10 +207,12 @@ void WidgetTurntable::drawBridge(QPainter &painter) const
     for (int x = 330; x <= 870; x += 30)
         painter.drawLine(QPointF(x, 580), QPointF(x, 620));
 
-    painter.setPen(pen(Qt::red, 5));
+    const QColor railColor = m_bridgeEnabled ? DarkColor : DisabledRailColor;
+
+    painter.setPen(pen(railColor, 5));
     painter.drawLine(QPointF(295, 590), QPointF(905, 590));
 
-    painter.setPen(pen(DarkColor, 5));
+    painter.setPen(pen(railColor, 5));
     painter.drawLine(QPointF(295, 610), QPointF(905, 610));
 
     painter.setPen(pen(StrokeColor, 3));
@@ -186,8 +223,8 @@ void WidgetTurntable::drawBridge(QPainter &painter) const
     painter.setBrush(CenterDotColor);
     painter.drawEllipse(QPointF(Center, Center), 7, 7);
 
-    painter.setBrush(Qt::black);
-    painter.drawEllipse(QPointF(900, 630), 7, 7);
+    painter.setBrush(TargetColor);
+    painter.drawEllipse(QPointF(900, 600), 14, 14);
 
     painter.restore();
 }
@@ -207,7 +244,7 @@ void WidgetTurntable::drawTargetIndicator(QPainter &painter) const
     painter.restore();
 }
 
-void WidgetTurntable::drawTrack(QPainter &painter, TrackPolarity polarity) const
+void WidgetTurntable::drawTrack(QPainter &painter, int trackNumber) const
 {
     painter.save();
 
@@ -215,12 +252,14 @@ void WidgetTurntable::drawTrack(QPainter &painter, TrackPolarity polarity) const
     for (int x = 945; x <= 1095; x += 25)
         painter.drawLine(QPointF(x, 580), QPointF(x, 620));
 
-    const bool dotUp = polarity == TrackPolarity::DotUp;
+    const QColor railColor = m_trackEnabled[trackNumber]
+                                 ? DarkColor
+                                 : DisabledRailColor;
 
-    painter.setPen(pen(dotUp ? Qt::red : DarkColor, 5));
+    painter.setPen(pen(railColor, 5));
     painter.drawLine(QPointF(920, 590), QPointF(1120, 590));
 
-    painter.setPen(pen(!dotUp ? Qt::red : DarkColor, 5));
+    painter.setPen(pen(railColor, 5));
     painter.drawLine(QPointF(920, 610), QPointF(1120, 610));
 
     painter.restore();
@@ -259,10 +298,7 @@ void WidgetTurntable::drawTurntable(QPainter &painter) const
         painter.rotate(track * PositionStep);
         painter.translate(-Center, -Center);
 
-        const TrackPolarity polarity = track == 0 || track >= 16
-                                           ? TrackPolarity::DotUp
-                                           : TrackPolarity::DotDown;
-        drawTrack(painter, polarity);
+        drawTrack(painter, track);
         painter.restore();
     }
 

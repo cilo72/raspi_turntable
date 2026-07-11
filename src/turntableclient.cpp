@@ -138,12 +138,19 @@ void TurntableClient::handlePositionMessage(const QString &message)
     const QJsonObject object = document.object();
     if (object.value(QStringLiteral("type")).toString() != QStringLiteral("position") ||
         !object.value(QStringLiteral("position")).isDouble() ||
-        !object.value(QStringLiteral("moving")).isBool()) {
+        !object.value(QStringLiteral("raw_position")).isDouble() ||
+        !object.value(QStringLiteral("homing_offset")).isDouble() ||
+        !object.value(QStringLiteral("moving")).isBool() ||
+        !object.value(QStringLiteral("powered_connection")).isDouble()) {
         return;
     }
 
     emit axisPositionReceived(object.value(QStringLiteral("position")).toInt(),
+                              object.value(QStringLiteral("raw_position")).toInt(),
                               object.value(QStringLiteral("moving")).toBool());
+    emit homingOffsetReceived(object.value(QStringLiteral("homing_offset")).toInt());
+    emit poweredConnectionReceived(
+        object.value(QStringLiteral("powered_connection")).toInt());
 }
 
 void TurntableClient::refreshState()

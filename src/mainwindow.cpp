@@ -17,66 +17,77 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->horizontalLayoutDisplay->addWidget(widgetTurntable_);
+    ui->stackedWidget->setCurrentWidget(ui->pageMain);
 
     connect(turntableClient_, &TurntableClient::stateReceived,
-            this, [this](const TurntableClient::State &state) {
-            ui->labelLowLevelLogicalPosition->setText(QString("%1").arg(state.logicalPosition));
-            ui->labelLowLevelLastError->setText(QString("%1").arg(state.lastError));
-            ui->labelLowLevelLastAction->setText(QString("%1").arg(state.lastAction));
-            ui->labelLowLevelAxisPosition->setText(QString("%1").arg(state.position));
-            position_ = state.logicalPosition;
-            widgetTurntable_->setTargetPosition(state.logicalPosition);
-            widgetTurntable_->setBridgePosition(state.position);
-            updateWidgetTurntable();
-            enableButtons();
-            //turntableClient_->readHomingOffset();
-
-
+            this, [this](const TurntableClient::State &state)
+            {
+                ui->labelLowLevelLogicalPosition->setText(QString("%1").arg(state.logicalPosition));
+                ui->labelLowLevelLastError->setText(QString("%1").arg(state.lastError));
+                ui->labelLowLevelLastAction->setText(QString("%1").arg(state.lastAction));                
+                position_ = state.logicalPosition;
+                widgetTurntable_->setBridgePosition(state.position);
+                enableButtons();
             });
     connect(turntableClient_, &TurntableClient::requestFailed,
-            this, [this](const QUrl &, int httpStatus, const QString &error) {
+            this, [this](const QUrl &, int httpStatus, const QString &error)
+            {
+                ui->labelErrorHttpStatus->setText(QString("%1").arg(httpStatus));
+                ui->labelError->setText(error);
+                ui->stackedWidget->setCurrentWidget(ui->pageError);
             });
 
     connect(turntableClient_, &TurntableClient::homingOffsetReceived,
             this, [this](int homingOffset) {
-            ui->labelLowLevelHomeOffset->setText(QString("%1").arg(homingOffset));
+                ui->labelLowLevelHomeOffset->setText(QString("%1").arg(homingOffset));
             });
 
     connect(turntableClient_, &TurntableClient::axisPositionReceived,
-            this, [this](int positionHundredths, bool) {
-            ui->labelLowLevelAxisPosition->setText(
+            this, [this](int positionHundredths, int rawPositionHundredths, bool)
+            {
+                ui->labelLowLevelAxisPosition->setText(
                 QString::number(positionHundredths / 100.0, 'f', 2));
-            widgetTurntable_->setBridgePosition(positionHundredths);
+                widgetTurntable_->setBridgePosition(positionHundredths);
+                ui->labelLowLevelAxisPosition->setText(QString("%1").arg(rawPositionHundredths));
+            });
+
+    connect(turntableClient_, &TurntableClient::poweredConnectionReceived,
+            this, [this](int connection)
+            {
+                const bool powered = connection >= 0 && connection < 20;
+                widgetTurntable_->setBridgeEnabled(powered);
+
+                for (int track = 0; track < 20; ++track)
+                    widgetTurntable_->setTrackEnabled(track,
+                                                      powered && track == connection);
             });
 
     connect(widgetTurntable_,  &WidgetTurntable::trackClicked, this, [this] (int track)
             {
-            position_ = track;            
-            widgetTurntable_->setTargetPosition(track);
+                position_ = track;
+                widgetTurntable_->setTargetPosition(track);
             });
 
     connect(&timer_, &QTimer::timeout, this, [this] ()
             {
-        if(timerPushButton_ )
-            {
-                if(iconSize_ == ICON_SIZE_LARGE)
+                timer_.start();
+                if(timerPushButton_ != nullptr )
                 {
-                    iconSize_ = ICON_SIZE_SMALL;
+                    if(iconSize_ == ICON_SIZE_LARGE)
+                    {
+                        iconSize_ = ICON_SIZE_SMALL;
+                    }
+                    else
+                    {
+                        iconSize_ = ICON_SIZE_LARGE;
+                    }
+                    timerPushButton_->setIconSize(QSize(iconSize_, iconSize_));
                 }
-                else
-                {
-                    iconSize_ = ICON_SIZE_LARGE;
-                }
-                timerPushButton_->setIconSize(QSize(iconSize_, iconSize_));
-            }
             });
 
     timer_.start(750);
 
-
     updateWidgetTurntable();
-    //turntableClient_->readHomingOffset();
-    //turntableClient_->refreshState();
 }
 
 MainWindow::~MainWindow()
@@ -219,22 +230,67 @@ void MainWindow::enableButtons()
 void MainWindow::setEnableButtons(bool enable)
 {
     ui->pushButtonInit->setEnabled(enable);
+    ui->pushButtonTurn->setEnabled(enable);
+    ui->pushButtonTurn180->setEnabled(enable);
+    ui->pushButtonPlus->setEnabled(enable);
+    ui->pushButtonMinus->setEnabled(enable);
+    ui->pushButtonPowerOff->setEnabled(enable);
+    ui->pushButtonPowerOnDot->setEnabled(enable);
+    ui->pushButtonPowerOnNoDot->setEnabled(enable);
 }
 
 void MainWindow::setBlinkingButton(QPushButton * button)
 {
-    timer_.stop();
+    QMutexLocker locker(&mutexButton_);
     if(button == nullptr)
     {
-        timerPushButton_->setIconSize(QSize(ICON_SIZE_LARGE, ICON_SIZE_LARGE));
+        if(timerPushButton_ != nullptr)
+        {
+            timerPushButton_->setIconSize(QSize(ICON_SIZE_LARGE, ICON_SIZE_LARGE));
+        }
     }
     timerPushButton_ = button;
-    timer_.start();
 }
 void MainWindow::on_pushButtonTurn_clicked()
 {
     setBlinkingButton(ui->pushButtonTurn);
     disableButtons();
     turntableClient_->turnTo(position_);
+}
 
+void MainWindow::on_pushButtonPowerOnDot_clicked()
+{
+    disableButtons();
+    turntableClient_->powerOn(TurntableClient::Side::Dot);
+}
+
+void MainWindow::on_pushButtonPowerOnNoDot_clicked()
+{
+    disableButtons();
+    turntableClient_->powerOn(TurntableClient::Side::NoDot);
+}
+
+void MainWindow::on_pushButtonPowerOff_clicked()
+{
+    disableButtons();
+    turntableClient_->powerOff();
+}
+
+void MainWindow::on_pushButtonTurn180_clicked()
+{
+    position_ = (position_ + 10) % 20;
+    updateWidgetTurntable();
+    setBlinkingButton(ui->pushButtonTurn180);
+    disableButtons();
+    turntableClient_->turnTo(position_);
+}
+
+void MainWindow::on_pushButtonPageErrorBack_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->pageMain);
+}
+
+void MainWindow::on_pushButtonLowLevelInit2_clicked()
+{
+    turntableClient_->init();
 }

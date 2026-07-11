@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include <QMutex>
 #include <QTimer>
 #include "turntableclient.h"
 #include "widgetturntable.h"
@@ -62,6 +63,18 @@ private slots:
 
     void on_pushButtonTurn_clicked();
 
+    void on_pushButtonPowerOnDot_clicked();
+
+    void on_pushButtonPowerOnNoDot_clicked();
+
+    void on_pushButtonPowerOff_clicked();
+
+    void on_pushButtonTurn180_clicked();
+
+    void on_pushButtonPageErrorBack_clicked();
+
+    void on_pushButtonLowLevelInit2_clicked();
+
 private:
     Ui::MainWindow *ui;
     TurntableClient *turntableClient_;
@@ -70,6 +83,7 @@ private:
     QTimer timer_;
     QPushButton * timerPushButton_;
     int32_t iconSize_;
+    QMutex mutexButton_;
 
     void updateWidgetTurntable();
     void disableButtons();

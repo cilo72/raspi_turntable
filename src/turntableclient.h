@@ -78,7 +78,8 @@ signals:
     void logicalPositionReceived(int position);
     void constantsReceived(const TurntableClient::Constants &constants);
     void homingOffsetReceived(int homingOffset);
-    void axisPositionReceived(int positionHundredths, bool moving);
+    void axisPositionReceived(int positionHundredths, int rawPositionHundredths, bool moving);
+    void poweredConnectionReceived(int connection);
     void positionStreamConnectedChanged(bool connected);
     void requestFailed(const QUrl &url, int httpStatus, const QString &error);
 
