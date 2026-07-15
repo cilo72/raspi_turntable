@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     , position_{0}
     , timerPushButton_{nullptr}
     , iconSize_{ICON_SIZE_LARGE}
+    , backToPage_{nullptr}
 {
     ui->setupUi(this);
     ui->horizontalLayoutDisplay->addWidget(widgetTurntable_);
@@ -34,7 +35,9 @@ MainWindow::MainWindow(QWidget *parent)
             {
                 ui->labelErrorHttpStatus->setText(QString("%1").arg(httpStatus));
                 ui->labelError->setText(error);
+                backToPage_ = ui->stackedWidget->currentWidget();
                 ui->stackedWidget->setCurrentWidget(ui->pageError);
+                enableButtons();
             });
 
     connect(turntableClient_, &TurntableClient::homingOffsetReceived,
@@ -61,6 +64,20 @@ MainWindow::MainWindow(QWidget *parent)
                     widgetTurntable_->setTrackEnabled(track,
                                                       powered && track == connection);
             });
+
+    connect(turntableClient_, &TurntableClient::positionStreamConnectedChanged,
+            this, [this](bool connected)
+            {
+                if(connected)
+                {
+                    ui->statusBar->showMessage("Connected");
+                }
+                else
+                {
+                    ui->statusBar->showMessage("No connection!");
+                }
+            });
+
 
     connect(widgetTurntable_,  &WidgetTurntable::trackClicked, this, [this] (int track)
             {
@@ -98,56 +115,67 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButtonLowLevelBridgeLock_clicked()
 {
+    disableButtons();
     turntableClient_->lock();
 }
 
 void MainWindow::on_pushButtonLowLevelBridgeUnlock_clicked()
 {
+    disableButtons();
     turntableClient_->unlock();
 }
 
 void MainWindow::on_pushButtonLowLevelPowerOff_clicked()
 {
+    disableButtons();
     turntableClient_->powerOff();
 }
 
 void MainWindow::on_pushButtonLowLevelPowerOnDot_clicked()
 {
+    disableButtons();
     turntableClient_->powerOn(TurntableClient::Side::Dot);
 }
 
 void MainWindow::on_pushButtonLowLevelPowerOnNoDot_clicked()
 {
+    disableButtons();
     turntableClient_->powerOn(TurntableClient::Side::NoDot);
 }
 
 void MainWindow::on_pushButtonLowLevelInit_clicked()
 {
+    disableButtons();
     turntableClient_->logicalInit();
 }
 
 void MainWindow::on_LowLevelTurnPlusOne_clicked()
 {
+    disableButtons();
     turntableClient_->turnClockwise();
 }
 
 void MainWindow::on_pushButtonLowLevelTurnMinusOne_clicked()
 {
+    disableButtons();
     turntableClient_->turnCounterClockwise();
 }
 
 void MainWindow::on_pushButtonLowLevelTurn180_clicked()
 {
+    disableButtons();
     turntableClient_->turn180();
 }
 
 void MainWindow::on_pushButtonLowLevelReset_clicked()
 {
+    disableButtons();
     turntableClient_->setOffset(0);
 }
 
 void MainWindow::on_pushButtonCW1_0_clicked()
 {
+    disableButtons();
     turntableClient_->turnTenth(10);
 }
 
@@ -158,11 +186,13 @@ void MainWindow::on_pushButtonCW0_1_clicked()
 
 void MainWindow::on_pushButtonCCW1_0_clicked()
 {
+    disableButtons();
     turntableClient_->turnTenth(-10);
 }
 
 void MainWindow::on_pushButtonCCW0_1_clicked()
 {
+    disableButtons();
     turntableClient_->turnTenth(-1);
 }
 
@@ -218,7 +248,7 @@ void MainWindow::on_pushButtonInit_clicked()
 
 void MainWindow::disableButtons()
 {
-    setEnableButtons(false);
+    setEnableButtons(false);    
 }
 
 void MainWindow::enableButtons()
@@ -237,6 +267,23 @@ void MainWindow::setEnableButtons(bool enable)
     ui->pushButtonPowerOff->setEnabled(enable);
     ui->pushButtonPowerOnDot->setEnabled(enable);
     ui->pushButtonPowerOnNoDot->setEnabled(enable);
+
+    ui->pushButtonLowLevelBridgeLock->setEnabled(enable);
+    ui->pushButtonLowLevelBridgeUnlock->setEnabled(enable);
+    ui->pushButtonLowLevelPowerOff->setEnabled(enable);
+    ui->pushButtonLowLevelPowerOnDot->setEnabled(enable);
+    ui->pushButtonLowLevelPowerOnNoDot->setEnabled(enable);
+    ui->pushButtonLowLevelInit->setEnabled(enable);
+    ui->LowLevelTurnPlusOne->setEnabled(enable);
+    ui->pushButtonLowLevelTurnMinusOne->setEnabled(enable);
+    ui->pushButtonLowLevelTurn180->setEnabled(enable);
+    ui->pushButtonLowLevelReset->setEnabled(enable);
+    ui->pushButtonCW1_0->setEnabled(enable);
+    ui->pushButtonCW0_1->setEnabled(enable);
+    ui->pushButtonCCW1_0->setEnabled(enable);
+    ui->pushButtonCCW0_1->setEnabled(enable);
+    ui->pushButtonLowLevelInit2->setEnabled(enable);
+    ui->pushButtonLowLevelSave->setEnabled(enable);
 }
 
 void MainWindow::setBlinkingButton(QPushButton * button)
@@ -287,10 +334,21 @@ void MainWindow::on_pushButtonTurn180_clicked()
 
 void MainWindow::on_pushButtonPageErrorBack_clicked()
 {
-    ui->stackedWidget->setCurrentWidget(ui->pageMain);
+    if(backToPage_ != nullptr)
+    {
+        ui->stackedWidget->setCurrentWidget(backToPage_);
+        backToPage_ = nullptr;
+    }
 }
 
 void MainWindow::on_pushButtonLowLevelInit2_clicked()
 {
+    disableButtons();
     turntableClient_->init();
+}
+
+void MainWindow::on_pushButtonLowLevelSave_clicked()
+{
+    disableButtons();
+    turntableClient_->saveOffset();
 }

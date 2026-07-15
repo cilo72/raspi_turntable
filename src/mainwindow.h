@@ -75,6 +75,8 @@ private slots:
 
     void on_pushButtonLowLevelInit2_clicked();
 
+    void on_pushButtonLowLevelSave_clicked();
+
 private:
     Ui::MainWindow *ui;
     TurntableClient *turntableClient_;
@@ -84,6 +86,7 @@ private:
     QPushButton * timerPushButton_;
     int32_t iconSize_;
     QMutex mutexButton_;
+    QWidget * backToPage_;
 
     void updateWidgetTurntable();
     void disableButtons();

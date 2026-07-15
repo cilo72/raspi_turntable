@@ -88,7 +88,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pageMain">
        <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1352,6 +1352,7 @@
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <resources>
   <include location="resources/resources.qrc"/>
