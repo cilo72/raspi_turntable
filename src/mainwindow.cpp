@@ -352,3 +352,8 @@ void MainWindow::on_pushButtonLowLevelSave_clicked()
     disableButtons();
     turntableClient_->saveOffset();
 }
+
+void MainWindow::on_pushButtonExit_clicked()
+{
+    close();
+}

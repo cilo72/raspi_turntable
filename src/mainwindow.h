@@ -77,6 +77,8 @@ private slots:
 
     void on_pushButtonLowLevelSave_clicked();
 
+    void on_pushButtonExit_clicked();
+
 private:
     Ui::MainWindow *ui;
     TurntableClient *turntableClient_;
