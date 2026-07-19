@@ -112,7 +112,7 @@
           <item row="4" column="1">
            <widget class="QPushButton" name="pushButtonPowerOff">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="minimumSize">
              <size>
@@ -151,7 +151,7 @@
           <item row="1" column="0">
            <widget class="QPushButton" name="pushButtonTurn">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="minimumSize">
              <size>
@@ -190,7 +190,7 @@
           <item row="2" column="2">
            <widget class="QPushButton" name="pushButtonPlus">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="minimumSize">
              <size>
@@ -275,7 +275,7 @@
           <item row="4" column="0">
            <widget class="QPushButton" name="pushButtonPowerOnDot">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="minimumSize">
              <size>
@@ -314,7 +314,7 @@
           <item row="4" column="2">
            <widget class="QPushButton" name="pushButtonPowerOnNoDot">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="minimumSize">
              <size>
@@ -353,7 +353,7 @@
           <item row="2" column="0">
            <widget class="QPushButton" name="pushButtonMinus">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="minimumSize">
              <size>
@@ -381,7 +381,7 @@
           <item row="1" column="2">
            <widget class="QPushButton" name="pushButtonTurn180">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="minimumSize">
              <size>
